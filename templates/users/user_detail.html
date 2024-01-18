@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>user detail</title>
+{% endblock %}
+
+{% block content %}
+    <div class="name">{{user.name}}</div>
+    <div class="score">총 점수 : {{user.score}}</div>
+    <a href="{% url 'users:user_update' %}" class="btn">수정하기</a>
+    <form action="{% url 'users:user_delete' %}" method="POST">
+        {%csrf_token%}
+        <button type="submit" class="btn">탈퇴하기</button>
+    </form>
+{% endblock %}
