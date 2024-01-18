@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>user detail</title>
+{% endblock %}
+
+{% block content %}
+    <div class="name">{{user.name}}</div>
+    <div class="score">총 점수 : {{user.score}}</div>
+{% blockend %}
