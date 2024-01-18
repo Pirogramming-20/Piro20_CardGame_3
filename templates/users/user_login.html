@@ -1,4 +1,7 @@
+{% load socialaccount %}
+
 <form method="POST" action="">
   {% csrf_token %} {{ form }}
   <button>로그인</button>
 </form>
+<a href="{% provider_login_url 'kakao' %}">카카오톡으로 로그인</a>

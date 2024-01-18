@@ -39,7 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.users',
     'apps.games',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1  # 이 ID는 Django 사이트 프레임워크의 ID와 일치해야 합니다.
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -51,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'CardGame.urls'
@@ -75,6 +88,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CardGame.wsgi.application'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id': '8df026f991b40f8f297c33fb151a0572',
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
