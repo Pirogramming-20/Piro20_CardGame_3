@@ -10,19 +10,19 @@
 <body>
     <header class="base_header">
         <div class="logo">
-            CardGame                 
+            <a href="%url 'users:' %">CardGame</a>                 
         </div>
         <nav class="base_nav">
             <ul>
                 <!--  로그인시 nav -->
                 {% if user.is_authenticated %} 
-                    <li><a href="{ url games:}"> 게임하기 </a></li>
-                    <li><a href="{ url users:rank}"> 랭킹 보기 </a></li>
-                    <li><a href="{ url users:logout}"> 로그아웃 </a></li>
+                    <!-- <li><a href="{% url 'users:rank' }"> 랭킹 보기 </a></li> -->
+                    <li><a href="{% url 'users:user_detail' %}"> 내 정보 </a></li>
+                    <li><a href="{% url 'users:logout' %}"> 로그아웃 </a></li>
                 <!--  로그인x nav -->
                 {% else %}
-                    <li><a href="{ url users:login}"> 로그인 </a></li>
-                    <li><a href="{ url users:signup}"> 회원가입 </a></li>    
+                    <li><a href="{% url 'users:login' %}"> 로그인 </a></li>
+                    <li><a href="{% url 'users:signup' %}"> 회원가입 </a></li>    
                 {% endif %}
             </ul>                
         </nav>

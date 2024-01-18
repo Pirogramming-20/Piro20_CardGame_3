@@ -2,3 +2,4 @@
   {% csrf_token %} {{ form }}
   <button>로그인</button>
 </form>
+<a href="{% url 'social:begin' 'naver' %}" class="naver-login-button">네이버로 로그인하기</a>

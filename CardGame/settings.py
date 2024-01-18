@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.users',
     'apps.games',
+    'social_django',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -133,3 +134,13 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 네이버 연동
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.naver.NaverOAuth2',
+)
+
+SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
+
+SOCIAL_AUTH_NAVER_SECRET = 'JnBnw3GJhQ'
+LOGIN_REDIRECT_URL = '/'
