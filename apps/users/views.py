@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from .forms import CustomUserChangeForm
+from .forms import userCreate
+from django.contrib.auth.forms import AuthenticationForm
+from .models import *
 # Create your views here.
 
 # 유저 프로필 페이지
@@ -40,10 +43,6 @@ def user_update(request):
 def user_logout(request):
     auth.logout(request)
     return redirect('users:main')
-from .forms import userCreate
-from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm
-from .models import *
 
 
 def signup(request):
