@@ -2,7 +2,6 @@ from django.db import models
 from apps.users.models import User
 import random
 
-    
 class Game(models.Model):
 
     user_1_card_num = models.IntegerField(default = 0)
