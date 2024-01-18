@@ -10,8 +10,8 @@
             <div class="game_item">
                 <p class="game_players">{{forloop.revcounter}}-{{game.user_1.name}}VS{{game.user_2.name}}</p>
                 <!-- 게임이 끝난 경우-->
-                {% if game.status %}
-                    {% if now_user == game.winner %}
+                {% if game.status %}                        
+                    {% if request.user.name == game.winner.name %}
                         <p>결과:승리</p>
                     {% else %}
                         <p>결과:패배</p>
@@ -21,7 +21,7 @@
                     <span>진행중...</span>
                     <form action="{% url 'games:delete' game.pk %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit">게임취소</button>
+                        <button type="submit">게임취소</button>                        
                     </form>
                 {% endif %}
                 <a href="games:detail">게임정보</a>

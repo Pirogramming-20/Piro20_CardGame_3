@@ -1,6 +1,6 @@
 from django.db import models
-import random
 from apps.users.models import User
+import random
 
 class Game(models.Model):
 
