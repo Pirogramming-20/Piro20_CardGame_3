@@ -14,10 +14,10 @@ def signup(request):
             return redirect('users:main')
     else:
         form = userCreate()
-        ctx = {
-            'form' : form
-        }
+
+    ctx = {'form': form}
     return render(request, 'users/user_signup.html', ctx)
+
 
 def login (request):
     if request.method == 'POST':
@@ -37,6 +37,10 @@ def login (request):
             'form': form,
         }
         return render(request, 'users/user_login.html', ctx)
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('users:main')
 
 def main (request):
     users = User.objects.all()
