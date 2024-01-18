@@ -1,12 +1,7 @@
 from django.db import models
 import random
+from apps.users.models import User
 
-class User(models.Model):
-    name = models.CharField(max_length=20)
-    score = models.IntegerField(default=0)
-    def __str__ (self):
-        return self.name
-    
 class Game(models.Model):
 
     user_1_card_num = models.IntegerField(default = 0)
