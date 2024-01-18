@@ -6,7 +6,7 @@ app_name = 'games'
 urlpatterns = [
     path('list/', game_list, name='list'),
 
-    path('attack/', attack, name='attack'),
+    path('attack/', game_attack, name='attack'),
     path('wait/', game_wait, name='wait'),
 
     path('defense/', game_defense, name='defense'),#대응하기 버튼 있는 페이지
