@@ -5,8 +5,11 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
 class Game(models.Model):
-    user_1_card_num = models.IntegerField(null = True)
-    user_2_card_num = models.IntegerField(null = True)
+
+    AVAILABLE_NUMBERS = sorted(random.sample(range(1, 11), 5))
+
+    user_1_card_num = models.CharField(max_length = 2, null = True, blank = True)
+    user_2_card_num = models.CharField(max_length = 2, null = True, blank = True)
     
     user_1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='attackers')
     user_2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='defenders')
