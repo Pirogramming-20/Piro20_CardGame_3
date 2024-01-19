@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">  
+    <link rel="stylesheet" href="{%static 'css/reset.css'%}">  
     {%block head%}
         
     {%endblock%} 
@@ -10,7 +13,7 @@
 <body>
     <header class="base_header">
         <div class="logo">
-            <a href="%url 'users:' %">CardGame</a>                 
+            <a href="{% url 'users:main' %}">CardGame</a>                 
         </div>
         <nav class="base_nav">
             <ul>
@@ -27,7 +30,7 @@
             </ul>                
         </nav>
     </header>
-    <div class="container">
+    <div class="big_container">
         {% block content %}
 
         {% endblock %}
