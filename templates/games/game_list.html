@@ -9,10 +9,14 @@
     <div class="game_list_container">
         {% for game in games reversed %}
             <div class="game_item">
-                <p class="game_players">{{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}</p>
+                <p class="game_players">
+                    {{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}
+                </p>
                 <!-- 게임이 끝난 경우-->
-                {% if game.status %}                        
-                    {% if request.user.name == game.winner.name %}
+                {% if game.status %}
+                    {% if game.winner is None %}
+                        <p>무승부</p> 0                     
+                    {% elif request.user.name == game.winner.name %}
                         <p>결과:승리</p>
                     {% else %}
                         <p>결과:패배</p>

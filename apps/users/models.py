@@ -7,7 +7,8 @@ class User(AbstractUser):
     class Meta:
         app_label = 'users' 
 
-    name = models.CharField(max_length = 20, blank=False)
+    name = models.CharField(max_length = 20, default='No Name')
     score = models.IntegerField(default = 0)
+
     def __str__ (self):
         return self.name
