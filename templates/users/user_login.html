@@ -1,4 +1,18 @@
-<form method="POST" action="">
-  {% csrf_token %} {{ form }}
-  <button>로그인</button>
-</form>
+{% extends "base.html" %} 
+{% load socialaccount %}{% load static %} {% block head %}
+<title>login</title>
+
+{% endblock %} {% block content %}
+<div class="box">
+  <h1>로그인</h1>
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn">로그인</button>
+  </form>
+  <a href="{% url 'social:begin' 'naver' %}" class="naver-login-button"
+    ><img src="{%static 'image/naver.ico'%}"
+  /></a>
+  <a href="{% provider_login_url 'google' %}">구글 로그인</a><br>
+  <a href="{% provider_login_url 'kakao' %}">카카오톡으로 로그인</a>
+</div>
+{% endblock %}

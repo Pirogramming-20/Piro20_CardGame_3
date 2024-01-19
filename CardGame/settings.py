@@ -33,13 +33,27 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.games',
     'apps.users',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'social_django',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1  # 이 ID는 Django 사이트 프레임워크의 ID와 일치해야 합니다.
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -51,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'CardGame.urls'
@@ -75,6 +90,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CardGame.wsgi.application'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id': '8df026f991b40f8f297c33fb151a0572',
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -133,3 +157,70 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = (
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+    #Needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    
+    # 네이버 연동
+    'social_core.backends.naver.NaverOAuth2',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#     }
+# }
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": ("566187899544-atqtb650oomgf6tl8v07f5s87sjq00l7.apps.googleusercontent.com"),
+            "secret": ("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"),
+            "key": ""
+        },
+        # These are provider-specific settings that can only be
+        # listed here:
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+
+        "AUTH_PARAMS": {
+            "access_type": "online",
+            'prompt': 'select_account',
+        }
+    },
+    "kakao": {
+        'APP': {
+            'client_id': ("8df026f991b40f8f297c33fb151a0572"),
+            'secret': ("rBPtc4rlFE1u2Zr6A0XpCJvkxylhSK1t"),
+            'key': ''
+        },
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+}
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+
+SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
+
+SOCIAL_AUTH_NAVER_SECRET = 'JnBnw3GJhQ'
+
+LOGIN_REDIRECT_URL = '/'
