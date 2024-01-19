@@ -2,20 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Game, User
 from .forms import AttackForm
 from django.db.models import Q
-from django.http import HttpResponse
-
 import random
 # Create your views here.
 
-def game_detail (request, pk):
-    game = Game.objects.get(id = pk)
-    if game.status:
-        ctx = {
-            'game': game
-        }
-        return render (request, 'games/games_detail_match.html', ctx)
-    else:
-        return HttpResponse("Game is not yet matched.")
 
 def game_attack(request):
     if request.user.is_authenticated:
@@ -72,6 +61,33 @@ def game_match (request, pk):
     game.save()
     game_pk = game.pk
     return redirect ('games:detail', game_pk)
+        
+        
+def game_list (request):
+    games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
+    print('여기보세요',games)
+    ctx = {'games' : games}
+    return render(request, 'games/game_list.html', ctx)
+
+
+def game_delete (request,pk):
+    if request.method == 'POST':
+        Game.objects.get(id=pk).delete()
+    return redirect('games:list')
+
+def game_detail (request, pk):
+    game = Game.objects.get(id = pk)
+    ctx = {
+            'game': game
+    }
+    if game.status:
+        return render (request, 'games/game_detail_match.html', ctx)
+    
+    elif request.user.name == game.player_1.name:
+        return render (request, 'games/game_detail_wait.html', ctx)
+    
+    else:
+        return render (request, 'games/game_detail_defense.html', ctx)
 
 def game_accept (request, pk):
     game = Game.objects.get (id = pk)
@@ -82,16 +98,3 @@ def game_accept (request, pk):
                 game.user_2_card_num = random.randint(1,11)
                 game.save()
                 return redirect ('games:match', pk)
-        
-        
-def game_list (request):
-    now_user = User.objects.get(id=1)
-    games = Game.objects.filter(Q(user_1=now_user) | Q(user_2=now_user))
-    ctx = {'games' : games, 'now_user':now_user}
-    return render(request, 'games/game_list.html', ctx)
-
-
-def game_delete (request,pk):
-    if request.method == 'POST':
-        Game.objects.get(id=pk).delete()
-    return redirect('games:list')
