@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'social_django',
 ]
@@ -55,12 +58,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1  # 이 ID는 Django 사이트 프레임워크의 ID와 일치해야 합니다.
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'social_django',
-]
 
 AUTH_USER_MODEL = 'users.User'
 
