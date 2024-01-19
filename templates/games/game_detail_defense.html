@@ -5,7 +5,7 @@
 {%block content%}
     <div class="detail_container">
         <p class="detail_player">
-            {{game.id}}-{{user_1.name}}VS{{user_2.name}}
+            {{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}
         </p>
         <a href="{% url 'games:accept' game.pk %}">대응하기</a>
         <a href="{% url 'games:list' %}">전적목록</a>
