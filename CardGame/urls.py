@@ -21,6 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.users.urls')),
     path('', include('allauth.urls')),
-    path('', include('apps.users.urls') ),
-    path('', include('social_django.urls', namespace='social')),  # 소셜 로그인을 위한 URL
+    path('', include('social_django.urls', namespace='social')),  # 네이버
 ]
