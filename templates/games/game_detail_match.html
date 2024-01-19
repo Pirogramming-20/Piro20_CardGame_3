@@ -16,11 +16,13 @@
     
     <p>{{game.user_1.name}}: {{game.user_1_card_num}} </p>
     <p>{{game.user_2.name}}: {{game.user_2_card_num}} </p>
-
-    <p>승자 : {{game.winner.name}} </p>
-    <p>패자 : {{game.loser.name}} </p>
-    <p>점수</p>
-    <p>{{game.user_1.name}}: {{game.user_1.score}} </p>
-    <p>{{game.user_2.name}}: {{game.user_2.score}} </p>
+    {% if request.user == game.winner %}
+      <p>결과 : 승리</p>
+    {% elif request.user == game.loser %}
+      <p>결과 : 패배</p>
+    {% else %}
+      <p>결과 : 무승부</p>
+    {% endif %}
+    <p>점수: {{request.user.score}}</p>
     <a href="{% url 'games:list' %}">전적 목록</a>
 {%endblock%}
