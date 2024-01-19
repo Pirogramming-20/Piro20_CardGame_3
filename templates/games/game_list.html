@@ -15,7 +15,7 @@
                 <!-- 게임이 끝난 경우-->
                 {% if game.status %}
                     {% if game.winner is None %}
-                        <p>무승부</p> 0                     
+                        <p>무승부</p>                   
                     {% elif request.user.name == game.winner.name %}
                         <p>결과:승리</p>
                     {% else %}
