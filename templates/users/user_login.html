@@ -1,5 +1,9 @@
-{% extends "base.html" %} 
-{% load socialaccount %}{% load static %} {% block head %}
+{% extends "base.html" %}
+{% load socialaccount %}
+{% provider_login_url 'kakao' %}
+{% load static %}
+
+{% block head %}
 <title>login</title>
 
 {% endblock %} {% block content %}

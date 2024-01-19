@@ -74,6 +74,7 @@ def login (request):
     else:
         form = AuthenticationForm()
         ctx = {
+            
             'form': form,
         }
         return render(request, 'users/user_login.html', ctx)
