@@ -89,3 +89,12 @@ def main (request):
         'users' : users
     }
     return render(request, 'users/user_main.html', ctx)
+
+def rank(request):
+    rankers = User.objects.order_by('-score')[:3]
+    ctx = {
+        'ranker1': rankers[0] if len(rankers) >= 1 else None,
+        'ranker2': rankers[1] if len(rankers) >= 2 else None,
+        'ranker3': rankers[2] if len(rankers) >= 3 else None,
+    }
+    return render(request, 'users/user_rank.html', ctx)

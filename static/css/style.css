@@ -213,3 +213,103 @@ footer{
     max-height: 80%;
     overflow: auto;
 }
+
+.rank_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+
+}
+
+.rank{
+    width: 100px;
+}
+.rank > p{
+    height: 50px;
+}
+
+.rank_1_bottom{
+    background-color:rgb(30, 32, 31);;
+    height: 150px;
+}
+
+.rank_2_bottom{
+    background-color: rgb(30, 32, 31);;
+    height: 100px;
+}
+
+.rank_3_bottom{
+    background-color:rgb(30, 32, 31);;
+    height: 70px;
+}
+.medal_img{
+    width: 80px;
+}
+
+.rank_ani_1{
+    opacity: 0;
+    animation: padeIn_1 1s linear forwards;
+}
+.rank_ani_2{
+    opacity: 0;
+    animation: padeIn_2 2s linear forwards;
+}
+.rank_ani_3{
+    opacity: 0;
+    animation: padeIn_3 4s linear forwards;
+}
+@keyframes padeIn_1 {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  
+@keyframes padeIn_2 {
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+@keyframes padeIn_3 {
+    50% {
+        opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+/* 게임 리스트 */
+.game_list_container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game_item{
+    display: flex;
+    flex-direction: column;
+}
+
+.game_item > .btn{
+    margin-bottom: 5px;
+}
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.yellow{
+    background-color: yellow;
+}

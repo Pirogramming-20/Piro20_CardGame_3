@@ -6,7 +6,7 @@
 {% block content %}
 <div class = 'box scroll-box'>
     <h2 class="game_now_player">현재 플레이어:{{user_1.name}}</h2>
-    <div class="game_list_container">
+    <div class="game_list_container">   
         {% for game in games reversed %}
             <div class="game_item">
                 <p class="game_players">
@@ -27,15 +27,16 @@
                         <span>진행중...</span>
                         <form action="{% url 'games:delete' game.pk %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit">게임취소</button>                        
+                            <button class="btn red" type="submit">게임취소</button>                        
                         </form>
                     {% else %}
-                        <a href="{% url 'games:accept' game.pk %}">반격하기</a>
+                        <a class="btn blue" href="{% url 'games:accept' game.pk %}">반격하기</a>
                     {% endif %}
                 {% endif %}
-                <a href="{% url 'games:detail' game.pk %}">게임정보</a>
+                <a class="btn" href="{% url 'games:detail' game.pk %}">게임정보</a>
             </div>
         {% endfor %}
+        <a class="btn yellow" href="{% url 'games:attack' %}"> 공격하기 </a> 
     </div>
 </div>
 {% endblock %}
