@@ -3,11 +3,6 @@ from .models import Game, User
 from django.core.exceptions import ValidationError
 import random
 
-from django import forms
-from .models import Game, User
-from django.core.exceptions import ValidationError
-import random
-
 class AttackForm(forms.ModelForm):
     class Meta:
         model = Game
