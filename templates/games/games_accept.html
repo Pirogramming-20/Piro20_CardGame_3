@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {%block head%}
-  <title>Games_attack</title>
+  <title>Games_accept</title>
 {% endblock %}
 {%block content%}
-<h1>Game attack</h1>
-<p> 게임 생성 페이지입니다.</p>    
+<h1>Game accept</h1>
+<p> 게임 반격 페이지입니다.</p>    
 <form
-    action="{% url 'games:attack' %}"
+    action="{% url 'games:accept' game.id %}"
     method="post"
   >
     {%csrf_token%} {{form.as_p}}

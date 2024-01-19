@@ -1,5 +1,6 @@
 from django import forms
 from .models import Game, User
+from django.core.exceptions import ValidationError
 import random
 class AttackForm(forms.ModelForm):
     class Meta:
@@ -9,16 +10,18 @@ class AttackForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(AttackForm, self).__init__(*args, **kwargs)
+        current_user = self.instance.user_1
+        self.fields['user_2'].queryset = User.objects.exclude(pk=current_user.pk)
 
-    def clean_user_2(self):
-        user_2 = self.cleaned_data.get('user_2')
-        if user_2 == self.instance.user_1:
-            raise forms.ValidationError('You cannot select user_1 as user_2.')
-        return user_2
-    
+    def clean(self):
+        cleaned_data = super().clean()
+        user_2 = cleaned_data.get('user_2')
+        user_1 = self.instance.user_1  # 기존 게임 정보에서 user_1 가져오기
+
+        if user_2 == user_1:
+            raise ValidationError('You cannot select user_1 as user_2.')
 #user2가 반격하기를 눌렀을 때 폼   
-class CounterattackForm(forms.ModelForm):
-    class Meta():
+class AcceptForm(forms.ModelForm):
+    class Meta:
         model = Game
-        fields = ('__all__')
-        
+        fields = ['user_2_card_num']
