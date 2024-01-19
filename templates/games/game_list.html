@@ -8,7 +8,7 @@
     <div class="game_list_container">
         {% for game in games reversed %}
             <div class="game_item">
-                <p class="game_players">{{forloop.revcounter}}-{{game.user_1.name}}VS{{game.user_2.name}}</p>
+                <p class="game_players">{{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}</p>
                 <!-- 게임이 끝난 경우-->
                 {% if game.status %}                        
                     {% if request.user.name == game.winner.name %}
@@ -18,13 +18,17 @@
                     {% endif %}
                 <!-- 게임이 안 끝난 경우 -->
                 {% else %}
-                    <span>진행중...</span>
-                    <form action="{% url 'games:delete' game.pk %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit">게임취소</button>                        
-                    </form>
+                    {% if request.user.name == game.user_1.name %}
+                        <span>진행중...</span>
+                        <form action="{% url 'games:delete' game.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">게임취소</button>                        
+                        </form>
+                    {% else %}
+                        <a href="{% url 'games:accept' game.pk %}">반격하기</a>
+                    {% endif %}
                 {% endif %}
-                <a href="games:detail">게임정보</a>
+                <a href="{% url 'games:detail' game.pk %}">게임정보</a>
             </div>
         {% endfor %}
     </div>
