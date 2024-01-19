@@ -166,6 +166,8 @@ AUTHENTICATION_BACKENDS = (
     #Needed to login by username in Django admin, regardless of 'allauth'
     'django.contrib.auth.backends.ModelBackend',
     
+    # 네이버 연동
+    'social_core.backends.naver.NaverOAuth2',
 )
 
 SITE_ID = 1
@@ -184,10 +186,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
-# 네이버 연동
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.naver.NaverOAuth2',
-)
+
 
 SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
 
