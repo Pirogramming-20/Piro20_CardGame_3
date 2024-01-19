@@ -13,7 +13,7 @@
             border: 1px solid #ddd; /* 박스 테두리 */
         }
 
-        .name, .score{
+        .user-name, .name, .score{
             margin: 10px 0;
             font-size: 25px;
         }
@@ -47,6 +47,7 @@
 {% block content %}
 <div class="profile-box">
     <h1>회원정보</h1>
+    <div class="user-name"><strong>아이디:</strong> {{ user.username }}</div>
     <div class="name"><strong>이름:</strong> {{ user.name }}</div>
     <div class="score"><strong>총 점수:</strong> {{ user.score }}점</div>
     <div class="btns">

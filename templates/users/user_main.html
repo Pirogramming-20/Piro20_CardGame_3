@@ -1,1 +1,22 @@
 {% extends "base.html" %}
+
+{% block head %}
+<title>main page</title>
+{% endblock %}
+
+{% block content %}
+<div class="main-page">
+    <div class="welcome-text">
+        전 세계 피로그래머와<br>한 판 승부 숫자카드게임!
+    </div>
+    {% if user.is_authenticated %}
+        <div class="user-name">
+            {{ user.username }}님 환영합니다!
+        </div>
+        <a href="{% url 'games:create' %}" class="action-button">게임하기</a>
+        <a href="{% url 'games:list' %}" class="action-button">전적보기</a>
+    {% else %}
+        <a href="{% url 'users:login' %}" class="action-button">게임하기</a>
+    {% endif %}
+</div>
+{% endblock %}
