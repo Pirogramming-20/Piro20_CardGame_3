@@ -19,6 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('games/', include('apps.games.urls')),
     path('', include('apps.users.urls') ),
-    path('accounts/', include('allauth.urls')),
+    path('', include('allauth.urls')),
+    path('', include('social_django.urls', namespace='social')),  # 네이버
 ]

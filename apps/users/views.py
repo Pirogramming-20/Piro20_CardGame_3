@@ -51,11 +51,8 @@ def signup(request):
         form = userCreate(request.POST)
         if form.is_valid():
             user = form.save()
-            user = authenticate(username=user.username, password=form.cleaned_data['password1'])
-            if user is not None:
-                # 올바른 login 함수 사용
-                login(request, user)
-                return redirect('users:main')
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('users:main')
     else:
         form = userCreate()
 
@@ -78,6 +75,7 @@ def login (request):
     else:
         form = AuthenticationForm()
         ctx = {
+            
             'form': form,
         }
         return render(request, 'users/user_login.html', ctx)

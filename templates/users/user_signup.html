@@ -1,4 +1,19 @@
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">회원가입</button>
-</form>
+{% extends "base.html" %}
+
+{% block head %}
+<title>login</title>
+{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h1>회원가입</h1>
+  <div class="signup-content">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn">회원가입</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
