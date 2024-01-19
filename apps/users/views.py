@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth import login, authenticate
 from .forms import CustomUserChangeForm
 from .forms import userCreate
 from django.contrib.auth.forms import AuthenticationForm
@@ -50,8 +51,11 @@ def signup(request):
         form = userCreate(request.POST)
         if form.is_valid():
             user = form.save()
-            auth.login(request, user)
-            return redirect('users:main')
+            user = authenticate(username=user.username, password=form.cleaned_data['password1'])
+            if user is not None:
+                # 올바른 login 함수 사용
+                login(request, user)
+                return redirect('users:main')
     else:
         form = userCreate()
 
