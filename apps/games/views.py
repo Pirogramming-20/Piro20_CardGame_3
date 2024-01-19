@@ -125,7 +125,7 @@ def game_accept(request, pk):
             
 def game_list (request):
     games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
-    games = games.order_by('-id')
+    games = games.order_by('id')
     ctx = {'games' : games}
     return render(request, 'games/game_list.html', ctx) 
        
