@@ -6,17 +6,6 @@ from django.http import HttpResponse
 
 import random
 # Create your views here.
-def game_list (request):
-    games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
-    print('여기보세요',games)
-    ctx = {'games' : games}
-    return render(request, 'games/game_list.html', ctx)
-
-def game_delete (request,pk):
-    if request.method == 'POST':
-        Game.objects.get(id=pk).delete()
-    return redirect('games:list')
-
 def game_detail (request, pk):
     game = Game.objects.get(id = pk)
     ctx = {
@@ -25,7 +14,7 @@ def game_detail (request, pk):
     if game.status:
         return render (request, 'games/game_detail_match.html', ctx)
     
-    elif request.user.name == game.player_1.name:
+    elif request.user.name == game.user_1.name:
         return render (request, 'games/game_detail_wait.html', ctx)
     
     else:
@@ -93,15 +82,12 @@ def game_accept (request, pk):
                 game.user_2_card_num = random.randint(1,11)
                 game.save()
                 return redirect ('games:match', pk)
-        
-        
+            
 def game_list (request):
-    now_user = User.objects.get(id=1)
-    games = Game.objects.filter(Q(user_1=now_user) | Q(user_2=now_user))
-    ctx = {'games' : games, 'now_user':now_user}
-    return render(request, 'games/game_list.html', ctx)
-
-
+    games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
+    ctx = {'games' : games}
+    return render(request, 'games/game_list.html', ctx) 
+       
 def game_delete (request,pk):
     if request.method == 'POST':
         Game.objects.get(id=pk).delete()
