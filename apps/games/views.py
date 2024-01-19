@@ -45,12 +45,14 @@ def game_match (request, pk):
     if game.rule == 'bigger':
         if (firstCardNum > secondCardNum):
             game.user_2.score -= secondCardNum
+            game.user_1.score += firstCardNum
             game.user_1.save()
             game.user_2.save()
             game.winner = game.user_1
             game.loser = game.user_2
         else:
             game.user_1.score -= firstCardNum
+            game.user_2.score += secondCardNum
             game.user_1.save()
             game.user_2.save()
             game.winner = game.user_2
@@ -58,12 +60,14 @@ def game_match (request, pk):
     else:
         if (firstCardNum < secondCardNum):
             game.user_2.score -= secondCardNum
+            game.user_1.score += firstCardNum
             game.user_1.save()
             game.user_2.save()
             game.winner = game.user_1
             game.loser = game.user_2  
         else:
             game.user_1.score -= firstCardNum
+            game.user_2.score += secondCardNum
             game.user_1.save()
             game.user_2.save()
             game.winner = game.user_2
@@ -121,6 +125,7 @@ def game_accept(request, pk):
             
 def game_list (request):
     games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
+    games = games.order_by('-id')
     ctx = {'games' : games}
     return render(request, 'games/game_list.html', ctx) 
        
