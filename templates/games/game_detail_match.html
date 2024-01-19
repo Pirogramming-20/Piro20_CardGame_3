@@ -8,23 +8,28 @@
 <div class="box">
 <h1>Game Detail</h1>
   <p> 게임 디테일 페이지입니다. </p>
-    <h1>{{game.user_1.name}} vs {{game.user_2.name}}</h1>
-    {% if game.rule == 'bigger' %}
-        <p> 숫자가 더 큰 사람이 대결에서 이깁니다.</p>
-    {% else %}
-        <p> 숫자가 더 작은 사람이 대결에서 이깁니다 </p>
-    {% endif %}
-    
-    <p>{{game.user_1.name}}: {{game.user_1_card_num}} </p>
-    <p>{{game.user_2.name}}: {{game.user_2_card_num}} </p>
-    {% if request.user == game.winner %}
-      <p>결과 : 승리</p>
-    {% elif request.user == game.loser %}
-      <p>결과 : 패배</p>
-    {% else %}
-      <p>결과 : 무승부</p>
-    {% endif %}
-    <p>점수: {{request.user.score}}</p>
-    <a href="{% url 'games:list' %}">전적 목록</a>
+  <div class="detail_row">
+      <div class="detail_game">
+        <p class = "strong">{{game.user_1.name}} vs {{game.user_2.name}}</p>
+        {% if game.rule == 'bigger' %}
+            <p> 숫자가 더 큰 사람이 <br> 대결에서 이깁니다.</p>
+        {% else %}
+            <p> 숫자가 더 작은 사람이 <br> 대결에서 이깁니다 </p>
+        {% endif %}
+        </div>
+      <div class="detail_game_info">
+        <p>{{game.user_1.name}}: {{game.user_1_card_num}} </p>
+        <p>{{game.user_2.name}}: {{game.user_2_card_num}} </p>
+        {% if request.user == game.winner %}
+          <p class = "strong">결과 : 승리</p>
+        {% elif request.user == game.loser %}
+          <p class = "strong">결과 : 패배</p>
+        {% else %}
+          <p class = "strong">결과 : 무승부</p>
+        {% endif %}
+        <p>내 점수: {{request.user.score}}</p>
+      </div>
+  </div>
+    <a class = 'btn' href="{% url 'games:list' %}">전적 목록</a>
 </div>
 {%endblock%}

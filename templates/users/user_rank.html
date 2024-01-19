@@ -3,42 +3,47 @@
 
 {% block head %}
 <title>rank page</title>
-{% endblock %} {% block content %}
-  <div class="box rank_box">
-    
-    
-    <div class="rank rank_2 rank_ani_2">
-        <img class="medal_img" src="{%static 'image/rank2.png' %}" />
-        <p>{% if ranker2 %}
-            {{ranker2.name}}
-            <br><br>
-            {{ranker2.score}}
-            {% endif %}</p>
-        <div class="rank_2_bottom"></div>
-    </div>
+{% endblock %} 
+{% block content %}
+<div class="box scroll-box">
+    <div class="rank_box">
+        <div class="rank rank_2 rank_ani_2">
+            <img class="medal_img" src="{%static 'image/rank2.png' %}" />
+            <p>{% if ranker2 %}
+                {{ranker2.name}}
+                <br><br>
+                {{ranker2.score}}
+                {% endif %}</p>
+            <div class="rank_2_bottom"></div>
+        </div>
 
-    <div class="rank rank_1 rank_ani_1" >
-        <img class="medal_img" src="{%static 'image/rank1.png' %}" /> 
-        <p>{% if ranker1 %}
-            {{ranker1.name}}
-            <br><br>
-            {{ranker1.score}}
-            {% endif %}</p>
-        <div class="rank_1_bottom"></div>
+        <div class="rank rank_1 rank_ani_1" >
+            <img class="medal_img" src="{%static 'image/rank1.png' %}" /> 
+            <p>{% if ranker1 %}
+                {{ranker1.name}}
+                <br><br>
+                {{ranker1.score}}
+                {% endif %}</p>
+            <div class="rank_1_bottom"></div>
+        </div>
+        
+        <div class="rank rank_3 rank_ani_3">
+            <img class="medal_img" src="{%static 'image/rank3.png' %}" /> 
+            <p>{% if ranker3 %}
+                {{ranker3.name}}
+                <br><br>
+                {{ranker3.score}}
+                {% endif %}
+            </p>
+            <div class="rank_3_bottom"></div>
+        </div>
     </div>
-    
-    <div class="rank rank_3 rank_ani_3">
-        <img class="medal_img" src="{%static 'image/rank3.png' %}" /> 
-        <p>{% if ranker3 %}
-            {{ranker3.name}}
-            <br><br>
-            {{ranker3.score}}
-            {% endif %}
-        </p>
-        <div class="rank_3_bottom"></div>
+    <div class="rank_all">
+    {% for ranker in rankers %}
+        <div class = "rank_all_info">
+            <span>{{forloop.counter}} 등 </span><span>{{ranker.name}}</span> <span>{{ranker.score}}</span>
+        </div>
+    {% endfor %}
     </div>
-    
-
-    
-  </div>
+</div>
 {% endblock %}

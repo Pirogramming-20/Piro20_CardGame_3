@@ -5,35 +5,42 @@
 
 {% block content %}
 <div class = 'box scroll-box'>
-    <h2 class="game_now_player">현재 플레이어:{{user_1.name}}</h2>
+    <h1>게임 전적</h1>
+    <h2 class="game_now_player">현재 플레이어 : {{user.name}}</h2>
+    <div class = 'game_list_header'><span class="strong">게임</span> <span class="strong middle">게임상태</span><span class="strong">게임상세</span></div>
     <div class="game_list_container">   
         {% for game in games reversed %}
             <div class="game_item">
-                <p class="game_players">
-                    {{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}
-                </p>
+                <div class="game_players">
+                    <p>게임 번호: {{forloop.counter}}</p> 
+                    <p>
+                    {{game.user_1.name}}VS{{game.user_2.name}}
+                    </p>
+                </div>
                 <!-- 게임이 끝난 경우-->
                 {% if game.status %}
                     {% if game.winner is None %}
-                        <p>무승부</p>                   
+                        <div class="game_status"><p>무승부</p></div> <div class="game_info">       
                     {% elif request.user.name == game.winner.name %}
-                        <p>결과:승리</p>
+                        <div class="game_status"><p>결과:승리</p></div> <div class="game_info">
                     {% else %}
-                        <p>결과:패배</p>
+                        <div class="game_status"><p>결과:패배</p></div> <div class="game_info">
                     {% endif %}
                 <!-- 게임이 안 끝난 경우 -->
                 {% else %}
                     {% if request.user.name == game.user_1.name %}
-                        <span>진행중...</span>
+                        <div class="game_status"><p>진행중...</p></div> <div class="game_info">
+
                         <form action="{% url 'games:delete' game.pk %}" method="POST">
                             {% csrf_token %}
                             <button class="btn red" type="submit">게임취소</button>                        
                         </form>
                     {% else %}
-                        <a class="btn blue" href="{% url 'games:accept' game.pk %}">반격하기</a>
+                        <div class="game_status"><p>진행중...</p></div>
+                        <div class="game_info"><a class="btn blue" href="{% url 'games:accept' game.pk %}">반격하기</a>
                     {% endif %}
                 {% endif %}
-                <a class="btn" href="{% url 'games:detail' game.pk %}">게임정보</a>
+                    <a class="btn" href="{% url 'games:detail' game.pk %}">게임정보</a></div>
             </div>
         {% endfor %}
         <a class="btn yellow" href="{% url 'games:attack' %}"> 공격하기 </a> 

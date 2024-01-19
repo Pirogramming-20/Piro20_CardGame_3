@@ -90,14 +90,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CardGame.wsgi.application'
 
-SOCIALACCOUNT_PROVIDERS = {
-    'kakao': {
-        'APP': {
-            'client_id': '8df026f991b40f8f297c33fb151a0572',
-        }
-    }
-}
-
 LOGIN_REDIRECT_URL = '/'
 
 # Database

@@ -2,6 +2,7 @@ body{
     background-color: rgb(30, 32, 31);
     width: 100vw;
     height: 100vh;
+    min-width: 1254px;
 }
 .base_header {
     height: 80px;
@@ -70,7 +71,7 @@ body{
     margin: 10px;   
 }
 .main_deco{
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     width: 90px;
     z-index: 1;
     height: 127px;
@@ -193,13 +194,16 @@ footer{
 }
 
 .box > h1{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 .helptext{
     display: block;
 }
 
 .btn { 
+    display: inline-block;
+    height: fit-content;
     margin: 0 30px;
     padding: 10px 20px; /* 버튼 내부 여백 */
     background-color: #4CAF50; /* 버튼 배경색 */
@@ -208,6 +212,7 @@ footer{
     border-radius: 5px; /* 버튼 모서리 둥글게 */
     cursor: pointer; /* 마우스 오버 시 커서 변경 */
     text-decoration: none; /* 텍스트 밑줄 없애기 */
+    font-size: 1.0rem;
 }
 .scroll-box{
     max-height: 80%;
@@ -219,6 +224,7 @@ footer{
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+    margin-top: 20px;
 
 }
 
@@ -294,22 +300,102 @@ footer{
     flex-direction: column;
     align-items: center;
 }
-
-.game_item{
+.game_list_container * {
+    margin: 0;
+}
+.game_players{
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.game_item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    padding-top: 5px;
+    align-items: center;
+}
+.game_info{
+    margin-right: 40px;
     display: flex;
     flex-direction: column;
 }
-
-.game_item > .btn{
+.game_item .btn{
+    margin: 0;
     margin-bottom: 5px;
+    
 }
 
 .red{
     background-color: red;
+    padding: 7px 20px;
 }
 .blue{
     background-color: blue;
 }
 .yellow{
-    background-color: yellow;
+    background-color: black;
+}
+
+.btn:hover {
+    opacity: 0.9; /* 버튼 호버 효과 */
+}
+
+.box > h2{
+    font-size: 1.2rem;
+}
+
+.game_status{
+    position: absolute;
+    left: 50%;
+    transform:translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game_list_header{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+
+.rank_all{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rank_all_info{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+    font-size: large;
+}
+.detail_row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.detail_game{
+    width: 50%;
+}
+
+.detail_game_info{
+    width: 50%;
+}
+
+.strong{
+    font-size: large;
+    font-weight: bold;
+}
+
+.middle{
+    position: absolute;
+    left: 50%;
+    transform:translate(-50%);
 }
