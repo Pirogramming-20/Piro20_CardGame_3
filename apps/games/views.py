@@ -5,7 +5,6 @@ from django.db.models import Q
 import random
 # Create your views here.
 
-
 def game_attack(request):
     if request.user.is_authenticated:
         if request.method == "GET":
@@ -112,3 +111,13 @@ def game_accept(request, pk):
             return render(request, 'games/games_accept.html', ctx)
     else:
         return redirect ('users:login')
+            
+def game_list (request):
+    games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
+    ctx = {'games' : games}
+    return render(request, 'games/game_list.html', ctx) 
+       
+def game_delete (request,pk):
+    if request.method == 'POST':
+        Game.objects.get(id=pk).delete()
+    return redirect('games:list')

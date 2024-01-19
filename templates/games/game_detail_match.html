@@ -22,4 +22,5 @@
     <p>점수</p>
     <p>{{game.user_1.name}}: {{game.user_1.score}} </p>
     <p>{{game.user_2.name}}: {{game.user_2.score}} </p>
+    <a href="{% url 'games:list' %}">전적 목록</a>
 {%endblock%}
