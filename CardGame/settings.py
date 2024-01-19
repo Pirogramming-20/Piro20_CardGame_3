@@ -173,17 +173,17 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#     }
+# }
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -201,7 +201,20 @@ SOCIALACCOUNT_PROVIDERS = {
 
         "AUTH_PARAMS": {
             "access_type": "online",
-}}}
+            'prompt': 'select_account',
+        }
+    },
+    "kakao": {
+        'APP': {
+            'client_id': ("8df026f991b40f8f297c33fb151a0572"),
+            'secret': ("rBPtc4rlFE1u2Zr6A0XpCJvkxylhSK1t"),
+            'key': ''
+        },
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+}
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
