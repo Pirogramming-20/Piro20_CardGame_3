@@ -5,7 +5,6 @@ from django.db.models import Q
 import random
 # Create your views here.
 
-
 def game_attack(request):
     if request.user.is_authenticated:
         if request.method == "GET":
@@ -37,6 +36,10 @@ def game_match (request, pk):
     if game.user_1_card_num == game.user_2_card_num:
         game.winner = None
         game.loser = None
+        game.save()
+        game_pk = game.pk
+    
+        return redirect ('games:detail', game_pk)
     if game.rule == 'bigger':
         if (game.user_1_card_num > game.user_2_card_num):
             game.user_2.score -= game.user_2_card_num
@@ -104,4 +107,21 @@ def game_accept(request, pk):
                 form.save()
                 game.status = True
                 game.save()
-                return redirect ('games:match', pk)
+                return redirect('games:match', pk)
+        else:
+            form = AcceptForm(instance = game)
+        
+            ctx = {'form': form, 'game': game}
+            return render(request, 'games/games_accept.html', ctx)
+    else:
+        return redirect ('users:login')
+            
+def game_list (request):
+    games = Game.objects.filter(Q(user_1=request.user) | Q(user_2=request.user))
+    ctx = {'games' : games}
+    return render(request, 'games/game_list.html', ctx) 
+       
+def game_delete (request,pk):
+    if request.method == 'POST':
+        Game.objects.get(id=pk).delete()
+    return redirect('games:list')
