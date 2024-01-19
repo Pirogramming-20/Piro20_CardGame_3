@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load socialaccount %}
+{% provider_login_url 'kakao' %}
 {% load static %}
 
 {% block head %}
@@ -15,6 +17,6 @@
     <button type="submit" class="btn">로그인</button>
   </form>
   <a href="{% url 'social:begin' 'naver' %}" class="naver-login-button"><img src="{%static 'image/naver.ico'%}"></a>
-  <a href="{% provider_login_url 'kakao' %}">카카오톡으로 로그인</a>
+
 </div>
 {% endblock %}
