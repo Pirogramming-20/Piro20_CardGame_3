@@ -19,6 +19,7 @@ class userChange(UserChangeForm):
         fields = ('username', 'name')
 
 class CustomUserChangeForm(UserChangeForm):
+    password = None
     class Meta:
         model = User
         fields = ['username', 'name']

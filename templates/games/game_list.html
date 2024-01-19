@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>game_list</title>
+{% endblock %}
+
+{% block content %}
+<div class = 'box'>
+    <h2 class="game_now_player">현재 플레이어:{{user_1.name}}</h2>
+    <div class="game_list_container">
+        {% for game in games reversed %}
+            <div class="game_item">
+                <p class="game_players">{{forloop.revcounter}}-{{game.user_1.name}}VS{{game.user_2.name}}</p>
+                <!-- 게임이 끝난 경우-->
+                {% if game.status %}
+                    {% if now_user == game.winner %}
+                        <p>결과:승리</p>
+                    {% else %}
+                        <p>결과:패배</p>
+                    {% endif %}
+                <!-- 게임이 안 끝난 경우 -->
+                {% else %}
+                    <span>진행중...</span>
+                    <form action="{% url 'games:delete' game.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">게임취소</button>
+                    </form>
+                {% endif %}
+                <a href="games:detail">게임정보</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
