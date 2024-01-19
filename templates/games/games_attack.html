@@ -6,7 +6,7 @@
 <h1>Game Create</h1>
 <p> 게임 생성 페이지입니다.</p>    
 <form
-    action="{% url 'games:create' %}"
+    action="{% url 'games:attack' %}"
     method="post"
   >
     {%csrf_token%} {{form.as_p}}
