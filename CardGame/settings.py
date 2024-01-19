@@ -38,13 +38,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.users',
     'apps.games',
+    'apps.users',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'social_django',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1  # 이 ID는 Django 사이트 프레임워크의 ID와 일치해야 합니다.
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -81,6 +90,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CardGame.wsgi.application'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id': '8df026f991b40f8f297c33fb151a0572',
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -165,6 +183,14 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-
 SOCIALACCOUNT_LOGIN_ON_GET = True
+# 네이버 연동
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.naver.NaverOAuth2',
+)
+
+SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
+
+SOCIAL_AUTH_NAVER_SECRET = 'JnBnw3GJhQ'
+
+LOGIN_REDIRECT_URL = '/'
