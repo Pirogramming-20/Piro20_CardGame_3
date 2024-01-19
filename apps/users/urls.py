@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete/', user_delete, name='user_delete'),
     path('update/', user_update, name='user_update'),
     path('logout/', logout, name='logout'),
+    path('rank/', logout, name='rank'),
 ]

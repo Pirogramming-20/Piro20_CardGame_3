@@ -11,6 +11,13 @@
   <body>
     <header class="base_header">
       <div class="logo">
+        <div class="logo_deco">
+          <img class="deco_img ani_1" src="{%static 'image/card2.png' %}" />
+          <img class="deco_img ani_2" src="{%static 'image/card2.png' %}" />
+          <img class="deco_img ani_3" src="{%static 'image/card2.png' %}" />
+          <img class="deco_img ani_4" src="{%static 'image/card2.png' %}" />
+          <img class="deco_img ani_5" src="{%static 'image/card2.png' %}" />
+        </div>
         <a href="{% url 'users:main' %}">PIROGRAM CARDGAME</a>
       </div>
       <nav class="base_nav">
@@ -19,6 +26,8 @@
           {% if user.is_authenticated %}
           <!-- <li><a href="{% url 'users:rank' }"> 랭킹 보기 </a></li> -->
           <li><a href="{% url 'users:user_detail' %}"> 내 정보 </a></li>
+          <li><a href="{% url 'users:user_detail' %}"> 랭킹 보기 </a></li>
+          <li><a href="{% url 'games:list' %}"> 전적 보기 </a></li>
           <li><a href="{% url 'users:logout' %}"> 로그아웃 </a></li>
           <!--  로그인x nav -->
           {% else %}
