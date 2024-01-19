@@ -23,13 +23,26 @@
       <nav class="base_nav">
         <ul>
           <!--  로그인시 nav -->
-          {% if user.is_authenticated %}
+          {% if user.is_authenticated and user.name %}
           <!-- <li><a href="{% url 'users:rank' }"> 랭킹 보기 </a></li> -->
           <li><a href="{% url 'users:user_detail' %}"> 내 정보 </a></li>
           <li><a href="{% url 'users:rank' %}"> 랭킹 보기 </a></li>
           <li><a href="{% url 'games:list' %}"> 전적 보기 </a></li>
           <li><a href="{% url 'users:logout' %}"> 로그아웃 </a></li>
           <!--  로그인x nav -->
+          {% elif user.is_authenticated and not user.name %}
+          <!-- <li><a href="{% url 'users:rank' }"> 랭킹 보기 </a></li> -->
+          <li><a href="{% url 'users:user_detail' %}"> 내 정보 </a></li>
+          <li><a href="{% url 'users:user_detail' %}"> 랭킹 보기 </a></li>
+          <li><a href="{% url 'games:list' %}"> 전적 보기 </a></li>
+          <li><a href="{% url 'users:logout' %}"> 로그아웃 </a></li>
+          <script>
+            window.onload = function () {
+              {
+                alert("회원정보에서 이름을 입력하세요 !!");
+              }
+            };
+          </script>
           {% else %}
           <li><a href="{% url 'users:login' %}"> 로그인 </a></li>
           <li><a href="{% url 'users:signup' %}"> 회원가입 </a></li>
@@ -37,11 +50,7 @@
         </ul>
       </nav>
     </header>
-    <div class="big_container">
-        {% block content %}
-
-        {% endblock %}
-    </div>
+    <div class="big_container">{% block content %} {% endblock %}</div>
     <footer></footer>
   </body>
 </html>
