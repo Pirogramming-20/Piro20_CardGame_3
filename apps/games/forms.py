@@ -13,7 +13,7 @@ class AttackForm(forms.ModelForm):
         super(AttackForm, self).__init__(*args, **kwargs)
         current_user = self.instance.user_1
         self.fields['user_2'].queryset = User.objects.exclude(pk=current_user.pk)
-
+        self.fields['user_2'].label = '공격 대상'
         # __init__에서 랜덤으로 선택된 숫자를 choices로 설정
         self.set_choices()
 
@@ -23,10 +23,12 @@ class AttackForm(forms.ModelForm):
             # 랜덤으로 1부터 10까지 5개의 숫자 선택
             random_numbers = sorted(random.sample(range(1, 11), 5))
             choices = [(str(num), str(num)) for num in random_numbers]
-            print (choices)
             # 'user_1_card_num' 필드에 선택된 숫자를 사용할 수 있도록 설정
-            self.fields['user_1_card_num'] = forms.ChoiceField(choices=choices, widget=forms.RadioSelect)
-
+            self.fields['user_1_card_num'] = forms.ChoiceField(choices=choices, widget=forms.RadioSelect, label='내 카드 번호')
+        else :
+            choices = [(str(num), str(num)) for num in range(1,11)]
+            
+            
     def clean(self):
         cleaned_data = super().clean()
         user_2 = cleaned_data.get('user_2')
@@ -62,7 +64,9 @@ class AcceptForm(forms.ModelForm):
             choices = [(str(num), str(num)) for num in random_numbers]
 
             # 'user_2_card_num' 필드에 선택된 숫자를 사용할 수 있도록 설정
-            self.fields['user_2_card_num'] = forms.ChoiceField(choices=choices, widget=forms.RadioSelect)
+            self.fields['user_2_card_num'] = forms.ChoiceField(choices=choices, widget=forms.RadioSelect, label='내 카드 번호')
+        else :
+            choices = [(str(num), str(num)) for num in range(1,11)]
 
     def clean(self):
         cleaned_data = super().clean()

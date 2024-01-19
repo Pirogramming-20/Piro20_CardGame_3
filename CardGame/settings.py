@@ -43,10 +43,17 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.google',
     'social_django',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1  # 이 ID는 Django 사이트 프레임워크의 ID와 일치해야 합니다.
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -59,7 +66,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'CardGame.urls'
@@ -160,11 +166,24 @@ AUTHENTICATION_BACKENDS = (
     #Needed to login by username in Django admin, regardless of 'allauth'
     'django.contrib.auth.backends.ModelBackend',
     
-    #네이버
+    # 네이버 연동
     'social_core.backends.naver.NaverOAuth2',
 )
 
 SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#     }
+# }
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -198,7 +217,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
-# 네이버 연동
+
 
 SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
 
