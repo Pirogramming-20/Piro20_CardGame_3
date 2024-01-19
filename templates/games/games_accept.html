@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{%block head%}
+  <title>Games_accept</title>
+{% endblock %}
+{%block content%}
+<h1>Game accept</h1>
+<p> 게임 반격 페이지입니다.</p>    
+<form
+    action="{% url 'games:accept' game.id %}"
+    method="post"
+  >
+    {%csrf_token%} {{form.as_p}}
+    <button class="btn btn-success">등록하기</button> 
+  </form>
+{%endblock%}

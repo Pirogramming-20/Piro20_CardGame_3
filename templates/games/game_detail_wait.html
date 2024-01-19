@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%block head%}
+  <title>Games_wait</title>
+{% endblock %}
+{%block content%}
+    <h1>게임 대기</h1>
+    <div class="detail_container">
+        <p class="detail_player">
+            {{game.id}}-{{game.user_1.name}}VS{{game.user_2.name}}
+        </p>
+        <p class="wait_situ">
+            진행중 <br>
+            나:{{game.user_1_card_num}} <br>
+            <form action="{% url 'games:delete' game.pk %}">
+                {% csrf_token %}
+                <button type="submit">게임취소</button>
+            </form>
+        </p>
+        <a href="{% url 'games:list' %}">전적 목록</a>
+    </di>
+{% endblock %}
