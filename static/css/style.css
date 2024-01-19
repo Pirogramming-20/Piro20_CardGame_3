@@ -118,3 +118,7 @@ footer{
     cursor: pointer; /* 마우스 오버 시 커서 변경 */
     text-decoration: none; /* 텍스트 밑줄 없애기 */
 }
+.scroll-box{
+    max-height: 80%;
+    overflow: auto;
+}

@@ -46,10 +46,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.google',
     'social_django',
-<<<<<<< HEAD
-=======
-    'allauth.socialaccount.providers.kakao',
->>>>>>> 536e3915633fee2b949b45d6af817b1227af71f1
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -164,27 +160,11 @@ AUTHENTICATION_BACKENDS = (
     #Needed to login by username in Django admin, regardless of 'allauth'
     'django.contrib.auth.backends.ModelBackend',
     
-<<<<<<< HEAD
     #네이버
-=======
-    # 네이버 연동
->>>>>>> 536e3915633fee2b949b45d6af817b1227af71f1
     'social_core.backends.naver.NaverOAuth2',
 )
 
 SITE_ID = 1
-
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         },
-#     }
-# }
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -218,11 +198,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
-<<<<<<< HEAD
 # 네이버 연동
-=======
-
->>>>>>> 536e3915633fee2b949b45d6af817b1227af71f1
 
 SOCIAL_AUTH_NAVER_KEY = 'ohiCnfqO7kEoypEFZqwn'
 

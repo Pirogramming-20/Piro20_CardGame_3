@@ -5,6 +5,7 @@
   <title>Games_detail</title>
 {% endblock %}
 {%block content%}
+<div class="box">
 <h1>Game Detail</h1>
   <p> 게임 디테일 페이지입니다. </p>
     <h1>{{game.user_1.name}} vs {{game.user_2.name}}</h1>
@@ -23,4 +24,5 @@
     <p>{{game.user_1.name}}: {{game.user_1.score}} </p>
     <p>{{game.user_2.name}}: {{game.user_2.score}} </p>
     <a href="{% url 'games:list' %}">전적 목록</a>
+</div>
 {%endblock%}

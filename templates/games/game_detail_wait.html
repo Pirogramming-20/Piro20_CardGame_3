@@ -3,6 +3,8 @@
   <title>Games_wait</title>
 {% endblock %}
 {%block content%}
+
+<div class="box">
     <h1>게임 대기</h1>
     <div class="detail_container">
         <p class="detail_player">
@@ -17,5 +19,6 @@
             </form>
         </p>
         <a href="{% url 'games:list' %}">전적 목록</a>
-    </di>
+    </div>
+</div>
 {% endblock %}
