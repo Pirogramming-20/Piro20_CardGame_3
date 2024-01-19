@@ -185,6 +185,24 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": ("566187899544-atqtb650oomgf6tl8v07f5s87sjq00l7.apps.googleusercontent.com"),
+            "secret": ("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"),
+            "key": ""
+        },
+        # These are provider-specific settings that can only be
+        # listed here:
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+
+        "AUTH_PARAMS": {
+            "access_type": "online",
+}}}
+
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
