@@ -50,7 +50,7 @@ def signup(request):
         form = userCreate(request.POST)
         if form.is_valid():
             user = form.save()
-            auth.login(request, user)
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('users:main')
     else:
         form = userCreate()
