@@ -6,5 +6,6 @@ class User(AbstractUser):
     # name = 본인 실명
     name = models.CharField(max_length = 20)
     score = models.IntegerField(default = 0)
+
     def __str__ (self):
         return self.name
