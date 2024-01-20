@@ -88,10 +88,10 @@ body{
     opacity: 0;
 }
 .ani_1{
+    z-index: 2;
     animation: rotateImage_1 2s linear forwards;
 }
 .ani_2{
-    z-index: 2;
     animation: rotateImage_2 2s linear forwards;
 }
 .ani_3{
